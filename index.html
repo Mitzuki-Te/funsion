@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificar Contraseña</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
+        #mensaje {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Verificar Contraseña</h2>
+
+    <input type="password" id="password" placeholder="Escribe tu contraseña">
+
+    <button onclick="verPassword()">Ver contraseña</button>
+
+    <p id="mensaje"></p>
+</div>
+
+<script>
+    function verPassword() {
+        let pwd = document.getElementById("password").value;
+        let mensaje = document.getElementById("mensaje");
+
+        // expresión regular (ejemplo):
+        // mínimo 8 caracteres, al menos una mayúscula, una minúscula y un número
+        let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+        if (pwd === "") {
+            mensaje.style.color = "red";
+            mensaje.textContent = "Ingresa una contraseña.";
+            return;
+        }
+
+        // Mostrar contraseña temporalmente
+        alert("Tu contraseña es: " + pwd);
+
+        // Validación
+        if (regex.test(pwd)) {
+            mensaje.style.color = "green";
+            mensaje.textContent = "Contraseña válida ✔️";
+        } else {
+            mensaje.style.color = "red";
+            mensaje.textContent = "Contraseña inválida ❌ (Debe tener 8 caracteres, mayúscula, minúscula y número)";
+        }
+    }
+</script>
+
+</body>
+</html>
